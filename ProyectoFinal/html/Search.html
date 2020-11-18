@@ -34,29 +34,30 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="About.html">About <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="Contact.html">Contact<span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Blog <span class="sr-only">(current)</span></a>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">History <span class="sr-only">(current)</span></a>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="Gallery.html">Gallery<span class="sr-only">(current)</span></a>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="Search.html">Searcher(NASA) <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="rockets.html">Rockets(SpaceX) <span class="sr-only">(current)</span></a>
-                    </li>
-
+                  <li class="nav-item active">
+                    <a class="nav-link" href="About.html">About <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item active">
+                    <a class="nav-link" href="Contact.html">Contact<span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item active">
+                    <a class="nav-link" target="_blank" href="https://elcohetespacial.blogspot.com/">Blog <span class="sr-only">(current)</span></a>
+                  <li class="nav-item active">
+                
+                  <li class="nav-item active">
+                    <a class="nav-link" href="Gallery.html">Gallery<span class="sr-only">(current)</span></a>
+                  <li class="nav-item active">
+                    <a class="nav-link" href="Search.html">Searcher(NASA) <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item active">
+                    <a class="nav-link" href="rockets.html">Rockets(SpaceX) <span class="sr-only">(current)</span></a>
+                  </li>
                 </ul>
-
-
-            </div>
+        
+                <form class="form-inline my-5 my-lg-0" class="float-right">
+        
+                </form>
+              </div>
         </nav>
     </header>
     <div class="container-fluid">
@@ -190,10 +191,16 @@
         $(document).ready(function () {
             $("#btnSearch").on('click', function (e) {
                 e.preventDefault();
+                //Validar que el campo no venga vacio
+                if($("#txtSearch").val()==='') {
+                    return;
+                }
+                //Traerse los datos que queramos buscar de la base de datos de la nasa
                 $.ajax({
                     url: "https://images-api.nasa.gov/search?q=" + $("#txtSearch").val() + "",
                     async: true,
                     error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        //capturar error en la api
                         var html = '';
                         html += '<div class="alert alert-danger" role="alert">';
                         html += errorThrown;
@@ -203,7 +210,8 @@
                         console.log(XMLHttpRequest.responseText);
                     }
                 }).then(function (data) {
-                    console.log(data.collection.items.length);
+                    //console.log(data.collection.items.length);
+                    //Crear la plantilal en formato de articulo de la nasa
                     $("#mensaje").empty();
                     var html = '';
                     html += '<hgroup class="mb20">';

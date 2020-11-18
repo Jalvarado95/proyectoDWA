@@ -34,30 +34,30 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="About.html">About <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="Contact.html">Contact<span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Blog <span class="sr-only">(current)</span></a>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">History <span class="sr-only">(current)</span></a>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="Gallery.html">Gallery<span class="sr-only">(current)</span></a>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="Search.html">Searcher(NASA) <span
-                                class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Rockets(SpaceX) <span class="sr-only">(current)</span></a>
-                    </li>
-
+                  <li class="nav-item active">
+                    <a class="nav-link" href="About.html">About <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item active">
+                    <a class="nav-link" href="Contact.html">Contact<span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item active">
+                    <a class="nav-link" target="_blank" href="https://elcohetespacial.blogspot.com/">Blog <span class="sr-only">(current)</span></a>
+                  <li class="nav-item active">
+                
+                  <li class="nav-item active">
+                    <a class="nav-link" href="Gallery.html">Gallery<span class="sr-only">(current)</span></a>
+                  <li class="nav-item active">
+                    <a class="nav-link" href="Search.html">Searcher(NASA) <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item active">
+                    <a class="nav-link" href="rockets.html">Rockets(SpaceX) <span class="sr-only">(current)</span></a>
+                  </li>
                 </ul>
-
-
-            </div>
+        
+                <form class="form-inline my-5 my-lg-0" class="float-right">
+        
+                </form>
+              </div>
         </nav>
     </header>
     <div class="container-fluid">
@@ -181,10 +181,12 @@
     <script>
 
         $(document).ready(function () {
+            //Codigo para traer data de SpaceX 
             $.ajax({
                 url: "https://api.spacexdata.com/v3/rockets",
                 async: true,
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    //Validar error ocurrido con la api
                     var html = '';
                     html += '<div class="alert alert-danger" role="alert">';
                     html += errorThrown;
@@ -196,6 +198,7 @@
             }).then(function (data) {
                 console.log(data.length);
                 $("#mensaje").empty();
+                //Crear codigo a insertar en formato de articulos informativos de los cohetes de SpaceX
                 var html = '';
                 html += '<hgroup class="mb20">';
                 html += '<h1>Numbers of rockets up to date: ' + moment().format("YYYY-MM-DD") + '</h1>';
